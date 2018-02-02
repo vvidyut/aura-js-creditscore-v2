@@ -85,7 +85,7 @@ deploy-app-to-oce:
         command: apply -f <(istioctl kube-inject -f kubernetes-deployment.yml)
 
 # This step prints the traffic routing rules, if any
-   - script:
+    - script:
       name: Print traffic routing rules, if any, with istioctl
       code: |
         echo "Print traffic routing rules, if any, with istioctl"
@@ -101,7 +101,7 @@ deploy-app-to-oce:
 #        istioctl create -f route-rules.yaml
 #        echo "Check if the rule has been set correctly"
 #        istioctl get routerule route-rules -o yaml
-
+#
 # Uncomment and use the "replace" step to update the route rule when you change it
 #    - script:
 #      name: Replace traffic route rule with istioctl
@@ -126,4 +126,3 @@ deploy-app-to-oce:
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
         command: get svc -o jsonpath='{.items[*].status.loadBalancer.ingress[*].ip}' --all-namespaces
-
